@@ -14,8 +14,8 @@ Mongoose.connect(process.env.DB_ACCESS, () => {
 app.get("/", (req, res) => {
   res.send("Server running...");
 });
-const adduser_r = require("./routes/adduser");
-app.use("/adduser", adduser_r);
+const user_r = require("./routes/user");
+app.use("/user", user_r);
 
 app.listen(process.env.PORT || 8080, () => {
   console.log("server running...");
