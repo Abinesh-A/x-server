@@ -8,7 +8,7 @@ routes.post("/", async (req, res) => {
     userName: userName,
     password: password,
   });
-  usersschema
+  await usersschema
     .save()
     .then((data) => {
       res.json({ DATA: data });
@@ -20,7 +20,7 @@ routes.post("/", async (req, res) => {
 
 routes.get("/login", async (req, res) => {
   const { userName, password } = req.body;
-  user
+  await user
     .findOne({ userName: userName, password: password })
     .then((data) => {
       if (data) {
