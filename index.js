@@ -6,19 +6,20 @@ const app = express({
     credentials: true,
   },
 });
-const Mongoose = require("mongoose");
+const mongoose = require("mongoose");
 require("dotenv/config");
 app.use(express.json());
 
 const auth_r = require("./routes/auth");
-const usersmodule = require("./models/users_module");
+
+mongoose.connect(process.env.DB_ACCESS) .then(() => {
+  console.log("DB Connected...");
+}).catch(err => {
+  console.log(err)
+})
 
 app.use("/auth", auth_r);
 
-
-Mongoose.connect(process.env.DB_ACCESS, () => {
-  console.log("DB Connected...");
-});
 app.get("/", (req, res) => {
   res.send("Server running...");
 });
