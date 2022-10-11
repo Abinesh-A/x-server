@@ -12,11 +12,11 @@ app.use(express.json());
 
 const auth_r = require("./routes/auth");
 
-// mongoose.connect(process.env.DB_ACCESS) .then(() => {
-//   console.log("DB Connected...");
-// }).catch(err => {
-//   console.log(err)
-// })
+mongoose.connect(process.env.DB_ACCESS) .then(() => {
+  console.log("DB Connected...");
+}).catch(err => {
+  console.log(err)
+})
 
 app.use("/auth", auth_r);
 
@@ -25,10 +25,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(process.env.PORT || 8080, () => {
-  mongoose.connect(process.env.DB_ACCESS) .then(() => {
-    console.log("DB Connected...");
-  }).catch(err => {
-    console.log(err)
-  })
   console.log("server running...");
 });
